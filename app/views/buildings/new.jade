@@ -1,0 +1,13 @@
+extends ../shared/template
+
+block content
+  h1= user.email
+
+  form(action='/buildings', method = 'post')
+    input(type='text', name= 'name', placeholder= 'name')
+    input(type='number', name='x', placeholder = 'x location')
+    input(type='number', name='y', placeholder= 'y location')
+    select(name='locationId')
+      each location in locations
+        option(value= location._id.toString())= location.name
+    button save

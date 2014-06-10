@@ -1,0 +1,26 @@
+extends ../shared/template
+
+block content
+  h1 LOOK, YOU DID IT!
+  h1= building.name
+  h2= location.name
+  h2= total
+
+  
+
+  select#floors
+    option Select a floor
+    each floor in floors
+      option#flooring(data-img=floor.photo, value=floor._id)= floor.name
+
+  button#create-room Create Room
+
+  table
+      tbody
+        -for(var y=0; y < building.y; y++)
+            tr
+              -for(var x = 0; x <building.x; x++)
+                td.cell(data-x=x, data-y=y)
+block scripts
+  script(src='/js/es6/compiled/building.js')
+

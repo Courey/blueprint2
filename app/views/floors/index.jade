@@ -1,0 +1,6 @@
+extends ../shared/template
+
+block content
+  each floor in floors
+    p= floor.name
+      .pic(style="background-image: url('#{floor.photo}')")
