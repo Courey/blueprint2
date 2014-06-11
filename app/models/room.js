@@ -7,11 +7,11 @@ class Room{
   static create(obj, bldg, fn){
     var room = new Room();
     room.name = obj.name;
-    room.begin = obj.begin;
-    room.end = obj.end;
+    room.beginX = obj.beginX;
+    room.endX = obj.endX;
     room.floorId = Mongo.ObjectID(obj.floorId);
-    room.x = parseInt(obj.x);
-    room.y = parseInt(obj.y);
+    room.beginY = parseInt(obj.beginY);
+    room.endY = parseInt(obj.endY);
 
     var bldId = Mongo.ObjectID(bldg);
 
@@ -22,6 +22,7 @@ class Room{
       //   fn(bldg);
       // });
     });
+
 
   }
 //i wonder who pissed in his cheerios

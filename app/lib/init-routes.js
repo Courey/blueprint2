@@ -40,6 +40,7 @@ function load(app, fn){
   app.all('*', users.bounce);
   app.get('/buildings/new', dbg, buildings.new);
   app.post('/buildings', dbg, buildings.create);
+  app.put('/buildings/:id/rooms', dbg, buildings.addRoom);
   app.get('/buildings/:id', dbg, buildings.show);
 
   console.log('Routes Loaded');

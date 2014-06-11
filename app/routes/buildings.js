@@ -5,7 +5,7 @@ var User = traceur.require(__dirname + '/../models/user.js');
 var Location = traceur.require(__dirname + '/../models/location.js');
 var Building = traceur.require(__dirname + '/../models/building.js');
 var Floor = traceur.require(__dirname + '/../models/floor.js');
-
+var async = require('async');
 
 exports.new = (req, res)=>{
 	console.log('DO YOU HAVE A COOKIE?!?');
@@ -30,13 +30,19 @@ exports.create = (req, res)=>{
 exports.show = (req, res)=>{
 	Floor.findAll(floors=>{
 		Building.findById(req.params.id, bldg=>{
-		console.log(bldg);
-		Location.findById(bldg.locationId, loc=>{
-			console.log(loc);
-			var totalCost = (bldg.x * 1) * (bldg.y * 1) * (loc.rate * 1);
-			res.render('buildings/show', {floors: floors, building: bldg, location:loc, total: totalCost});
+			Location.findById(bldg.locationId, loc=>{
+				var totalCost = (bldg.x * 1) * (bldg.y * 1) * (loc.rate * 1);
+				res.render('buildings/show', {floors: floors, building: bldg, location:loc, total: totalCost});
+			});
 		});
 	});
-	});
-	
 };
+
+exports.addRoom = (req, res)=>{
+	Building.findById(req.params.id, building=>{
+		building.addRoom(req.body, ()=>{
+
+		});
+	});	
+};
+

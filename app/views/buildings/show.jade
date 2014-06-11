@@ -6,7 +6,8 @@ block content
   h2= location.name
   h2= total
 
-  
+  button#save-room Save Room
+  input#name(type='text')
 
   select#floors
     option Select a floor
@@ -15,7 +16,7 @@ block content
 
   button#create-room Create Room
 
-  table
+  table#building(data-id=building._id.toString())
       tbody
         -for(var y=0; y < building.y; y++)
             tr
