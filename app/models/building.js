@@ -38,23 +38,27 @@ class Building{
 
   totalCost(func){
     Location.findById(this.locationId, location=>{
-      console.log(this.location);
-      console.log('LOCATION');
-      console.log(location);
       var cost = (this.x * 1) * (this.y * 1) * (location.rate * 1);
 
       async.map(this.rooms, tallyRoomCost, (err, result)=>{
         cost+= result.reduce((accum, room)=>{
-          var x = room.endX -room.beginX +1;
-          var y = room.endY - room.beginY +1;
+          console.log(room);
+          var x = room.end.x * 1 - room.begin.x * 1 +1;
+          var y = room.end.y * 1 - room.begin.y * 1 +1;
           var sqFt = x * y;
+          console.log(x,y,sqFt);
           return sqFt * room.floor.rate;
         }, 0);
+        console.log('COST************************');
+        console.log(cost);
         func(cost);
       });
     });
   }
 
+//this thing goes into the building show page.
+//script.
+//var building = !{JSON.stringify(bldg)};
 
 
 

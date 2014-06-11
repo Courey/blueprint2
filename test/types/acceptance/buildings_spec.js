@@ -133,11 +133,12 @@ describe('buildings', function(){
 		describe('PUT /buildings/:id/rooms', function(){
 			it('should add a room to building', function(done){
 				request(app)
-				.put('/buildings/c123456789abcdef01234569/rooms')
-				.send({name: 'bedroom', beginX:'0', beginY:'5', endX:'30', endY:'20', floorId:'b123456789abcdef01234569'})
+				.put('/buildings/c123456789abcdef01234567/rooms')
+				.send({name: 'bedroom', beginX:'0', beginY:'5', endX:'30', endY:'30', floorId:'b123456789abcdef01234568'})
 				.set('cookie', cookie)
 				.end(function(err, res){
-					console.log(res);
+					expect(res.status).to.equal(200);
+					expect(res.body).to.deep.equal({cost:3275.3});
 					done();
 				});
 			});

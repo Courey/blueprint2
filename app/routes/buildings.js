@@ -38,7 +38,6 @@ exports.show = (req, res)=>{
 
 exports.addRoom = (req, res)=>{
   Building.findById(req.params.id, bldg=>{
-  	console.log('BUILDING');
   	console.log(bldg);
     bldg.addRoom(req.body, ()=>{
       bldg.totalCost(rate=>res.send({cost:rate}));
