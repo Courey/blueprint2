@@ -37,7 +37,10 @@ class Building{
   }
 
   totalCost(func){
-    Location.findById(this.location, location=>{
+    Location.findById(this.locationId, location=>{
+      console.log(this.location);
+      console.log('LOCATION');
+      console.log(location);
       var cost = (this.x * 1) * (this.y * 1) * (location.rate * 1);
 
       async.map(this.rooms, tallyRoomCost, (err, result)=>{
@@ -55,7 +58,7 @@ class Building{
 
 
 
-}
+}//end BUILDING
 
 function tallyRoomCost(room, func){
   'use strict';
